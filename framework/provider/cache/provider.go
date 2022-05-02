@@ -5,7 +5,7 @@ import (
 
 	"github.com/Pangjiping/eehe/framework"
 	"github.com/Pangjiping/eehe/framework/contract"
-	"github.com/Pangjiping/eehe/framework/provider/cache/services"
+	services "github.com/Pangjiping/eehe/framework/provider/cache/service"
 )
 
 // EeheCacheProvider EeheCache服务提供者

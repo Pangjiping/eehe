@@ -25,7 +25,7 @@ type RedisCache struct {
 func NewRedisCache(opts ...interface{}) (interface{}, error) {
 	container := opts[0].(framework.Container)
 	if !container.IsBind(contract.RedisKey) {
-		err := container.Bind(&redis.RedisProvider{})
+		err := container.Bind(&redis.EeheRedisProvider{})
 		if err != nil {
 			return nil, err
 		}
@@ -129,7 +129,7 @@ func (rc *RedisCache) GetTTL(ctx context.Context, key string) (time.Duration, er
 	return rc.client.TTL(ctx, key).Result()
 }
 
-func (rc *RedisCache) Remember(ctx context.Context, key string, timeout time.Duration, rememberFunc RememberFunc, model interface{}) error {
+func (rc *RedisCache) Remember(ctx context.Context, key string, timeout time.Duration, rememberFunc contract.RememberFunc, model interface{}) error {
 	err := rc.GetObj(ctx, key, model)
 	if err == nil {
 		return nil
